@@ -11,7 +11,7 @@ function TempCard(props) {
     <div className="rounded overflow-hidden shadow-lg flex flex-col">
       <Link to=""></Link>
       <div className="relative">
-        <Link to={`${batch==="The Uniques"?"home/edit-template-tu":"home/edit-template-academic"}`}>
+        <Link to={`${batch==="The Uniques"?"homeTeacher/edit-template-tu":"homeTeacher/edit-template-academic"}`}>
           <img
             className="w-full h-64 object-cover object-center"
             src={image ? image : "https://source.unsplash.com/random"}
