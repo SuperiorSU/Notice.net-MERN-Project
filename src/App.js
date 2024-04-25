@@ -9,6 +9,7 @@ import Info from './pages/Info';
 import Alerts from './pages/Alerts';
 import Fine from './pages/Fine';
 import Termination from './pages/Termination';
+import TheUniques from './components/Letters/TheUnqiues';
 
 
 function App() {
@@ -62,6 +63,11 @@ function App() {
           {
             path: '/home/termination&promotions',
             element: <Termination/>
+          },
+          {
+            path: 'home/edit-template-tu',
+            element: <TheUniques/>
+          
           }
         ],
       }

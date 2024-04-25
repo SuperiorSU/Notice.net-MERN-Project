@@ -3,18 +3,18 @@ const Notice = require('../model/noticeModel')
 // creating new notice route
 exports.createNotice = async (req,res)=>{
     try{
-        const {title,description,postedBy,batch} = req.body;
+        const {title,description,date,batch} = req.body;
         // checking if all fields are filled
-        if(!title || !description || !postedBy || !batch){
-            return res.status(400).json({
-                success:false,
-                message:"Please fill all fields"})
-        }
+        // if(!title || !description || !postedBy || !batch){
+        //     return res.status(400).json({
+        //         success:false,
+        //         message:"Please fill all fields"})
+        // }
         // creating new notice
         const notice = await Notice.create({
             title,
             description,
-            postedBy,
+            date,
             batch
         })
         // sending response
@@ -26,7 +26,7 @@ exports.createNotice = async (req,res)=>{
     catch(err){
         res.status(500).json({
             success:false,
-            message:err.message
+            message:("Cant create a new notice",err.message)
         })
     }
 }

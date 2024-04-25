@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function TempCard(props) {
     const title = props.title;
@@ -28,8 +29,8 @@ function TempCard(props) {
           <a href="#!"
             className="hidden z-10 text-xs absolute bottom-0 left-0 bg-indigo-600 px-6 m-2 py-2 text-white hover:bg-red-500 hover:text-white transition duration-500 ease-in-out sm:flex items-center"><span className="text-lg">|</span>&nbsp;&nbsp;<span>View</span></a>
   
-          <a href="#!"
-            className="hidden z-10 text-xs absolute bottom-0 right-0 bg-indigo-600 px-6 m-2 py-2 text-white hover:bg-red-500 hover:text-white transition duration-500 ease-in-out sm:flex items-center"><span className="text-lg">|</span>&nbsp;&nbsp;<span>Edit Template</span></a>
+          <Link to="home/edit-template-tu"
+            className="hidden z-10 text-xs absolute bottom-0 right-0 bg-indigo-600 px-6 m-2 py-2 text-white hover:bg-red-500 hover:text-white transition duration-500 ease-in-out sm:flex items-center"><span className="text-lg">|</span>&nbsp;&nbsp;<span>Edit Template</span></Link>
         </div>
         <a href="#" className="p-5 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
           <svg height="13px" width="13px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style={{enableBackground: 'new 0 0 512 512'}} xmlSpace="preserve">

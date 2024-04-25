@@ -21,8 +21,9 @@ const Login = () => {
         .post("http://127.0.0.1:5000/api/v1/login", userLog)
         .then(() => {
           let val = "User logged in successfully";
-          toast.success(`${val}`);
+          
           navigate("/home");
+          toast.success(`${val}`);
         });
     } catch (err) {
       // console.log(err)

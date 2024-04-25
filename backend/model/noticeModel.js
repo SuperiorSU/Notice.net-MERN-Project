@@ -17,10 +17,10 @@ const noticeSchema = new mongoose.Schema({
         required:true,
         enum:["Super60", "The Uniques"],
     },
-    postedBy:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-    }
+    // postedBy:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"User"
+    // }
 })
 
 module.exports = mongoose.model("Notice",noticeSchema);
