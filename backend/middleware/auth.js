@@ -46,8 +46,25 @@ exports.auth = (req,res,next) =>{
         })
     }
 }
-
-exports.isCoordinator = (req,res,next)=>{
+exports.isStudent = (req,res,next)=>{
+    try{
+        // we stored the decoded in user object so that we can check the roles and authenticate the user. Below we check the role of the user and if it is not student, we return an error. The decoded is a payload which we passed while creating the token.
+        if(req.user.role!=="student"){
+            return res.status(401).json({
+                success:false,
+                message:"This is a protected route for student only"
+            });
+        }
+        next()
+    }
+    catch(err){
+        return res.status(500).json({
+            success:false,
+            message:"Something is not right-student."
+        })
+    }
+}
+exports.isTeacher = (req,res,next)=>{
     try{
         // we stored the decoded in user object so that we can check the roles and authenticate the user. Below we check the role of the user and if it is not student, we return an error. The decoded is a payload which we passed while creating the token.
         if(req.user.role!=="co-ordinator"){
@@ -56,6 +73,7 @@ exports.isCoordinator = (req,res,next)=>{
                 message:"This is a protected route for co-ordinator only"
             });
         }
+        next()
     }
     catch(err){
         return res.status(500).json({

@@ -15,7 +15,7 @@ const noticeSchema = new mongoose.Schema({
     batch:{
         type:String,
         required:true,
-        enum:["Super60", "The Uniques"],
+        enum:["Super60", "The Uniques","academic"],
     },
     // postedBy:{
     //     type:mongoose.Schema.Types.ObjectId,

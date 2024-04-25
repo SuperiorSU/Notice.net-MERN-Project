@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.signup = async (req, res) => {
     try {
       // get data
-      const { name, email, password, role } = req.body;
+      const { name, email, password, role,batch } = req.body;
 
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -32,7 +32,8 @@ exports.signup = async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role,
+        role:"student",
+        batch,
       });
   
       return res.status(200).json({
@@ -68,6 +69,7 @@ exports.login = async (req, res) => {
         email: user.email,
         id: user._id,
         role: user.role,
+        batch: user.batch
 
       }
       if(await bcrypt.compare(password, user.password)){
@@ -108,3 +110,4 @@ exports.login = async (req, res) => {
       })
     }
   };
+

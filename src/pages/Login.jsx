@@ -17,18 +17,20 @@ const Login = () => {
 
     console.log(userLog);
     try {
-      await axios
-        .post("http://127.0.0.1:5000/api/v1/login", userLog)
-        .then(() => {
-          let val = "User logged in successfully";
-          
-          navigate("/home");
-          toast.success(`${val}`);
-        });
+      const response = await axios.post(
+        "http://127.0.0.1:5000/api/v1/login",
+        userLog
+      );
+      if (response.data.user.role === "teacher") {
+        navigate("/homeTeacher")
+      }
+      if (response.data.user.role === "student") {
+        navigate("/homeStudent")
+      }
+      toast.success(response.data.message);
+      setUserLog(response.data.user)
     } catch (err) {
-      // console.log(err)
-      let val = err.response.data.message;
-      toast.error(`${val}`);
+      toast.error(err.response.data.message);
     }
   };
 

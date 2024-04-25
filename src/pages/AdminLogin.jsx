@@ -17,17 +17,23 @@ const Login = () => {
 
     // console.log(userLog);
     try {
-      await axios
-        .post("http://127.0.0.1:5000/api/v1/adminLogin", adminLog)
-        .then(() => {
-          let val = "Admin logged in successfully";
-          toast.success(`${val}`);
-          navigate("/adminPanel");
-        });
+      const response = await axios.post(
+        "http://127.0.0.1:5000/api/v1/login",
+        adminLog
+      );
+      if (response.data.user.role === "admin") {
+        navigate("/adminPanel")
+      }
+      if (response.data.user.role === "student") {
+        navigate("/homeStudent")
+      }
+      if (response.data.user.role === "teacher") {
+        navigate("/homeTeacher")
+      }
+      toast.success(response.data.message);
+      setAdminLog(response.data.user)
     } catch (err) {
-      // console.log(err)
-      let val = err.response.data.message;
-      toast.error(`${val}`);
+      toast.error(err.response.data.message);
     }
   };
 

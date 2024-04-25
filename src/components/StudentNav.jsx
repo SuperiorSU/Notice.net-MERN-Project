@@ -5,14 +5,14 @@ import { MdOutlineCompareArrows } from "react-icons/md";
 import { CgNotes } from "react-icons/cg";
 import { CiUser } from "react-icons/ci";
 import { Link } from 'react-router-dom';
-const NavBar = () => {
+const StudentNav = () => {
   return (
     <div className=' sticky border-b-2 border-gray-200'>
         <div className='bg-blue-950 text-white p-2 flex justify-between max-w-full  items-center ps-3 pe-3'>
-            <div><span className=' font-bold'>Notice.net</span> Admin</div>
+            <div><Link to ="/homeStudent"><span className=' font-bold'>Notice.net</span></Link> Student</div>
             <div className='underline'>
-                <Link to='/adminLogin'>
-                    Admin Panel
+                <Link to='/homeStudent/profile'>
+                    View Profile
                 </Link>
                 </div>
             </div>
@@ -24,15 +24,14 @@ const NavBar = () => {
             </div> */}
             <div className='p-3 ps-10 pe-10 flex justify-between items-center lg:border-b-0 md:border-b-[1px] sm:border-b-[1px] border-b-[1px]'>
                 <label>
-                    <Link to='/home'>
+                    <Link to='/homeStudent'>
                         <p className='text-red-500 font-bold text-[20px]'><span className='text-[22px] font-bold text-blue-950'>Notice</span>.net</p>
                     </Link>
                 </label>
                 <ul className='lg:flex list-none gap-7 justify-center items-center md:flex hidden sm:hidden'>
-                    <li><Link to='/home/info'>Information</Link></li>
-                    <li><Link to='/home/alerts'>Alerts</Link></li>
-                    <li><Link to="/home/fine&dues">Fine & Dues</Link></li>
-                    <li><Link to="/home/termination&promotions">Termination & Promotion</Link></li>
+                    <li><Link to='/homeStudent/allNotices'>All Notices</Link></li>
+                    <li><Link to='/homeStudent/latestNotices'>Latest Notices</Link></li>
+                    
                 </ul>
                 <div >
                     <div className='flex gap-8 items-center'>
@@ -61,4 +60,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar;
+export default StudentNav;

@@ -16,8 +16,11 @@ const UserSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        enum: ['teacher', 'co-ordinator','admin'],
-        
+        enum: ['teacher', 'student','admin'],  
+    },
+    batch:{
+        type: String,
+        enum: ['The Uniques', 'academics', 'Super60'],
     }
 })
 
