@@ -4,7 +4,8 @@ import jsPDF from "jspdf";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { MdOutlineFileDownload } from "react-icons/md";
-import Sidebar from "../../pages/admin/Sidebar";
+// import Sidebar from "../../pages/admin/Sidebar";
+import TeachsideBar from "../TeachsideBar";
 const Academic = () => {
   const noticeRef = useRef(null);
   const [data, setData] = useState({
@@ -52,7 +53,7 @@ const Academic = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 sticky">
         <div className="col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-1">
           <aside className='sticky top-[1px] x-[3]'>
-            <Sidebar/>
+            <TeachsideBar/>
           </aside>
         </div>
         <div className="col-span-2 lg:col-span-2 md:col-span-2 sm:col-span-1 p-5">

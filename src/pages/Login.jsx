@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
@@ -24,6 +24,9 @@ const Login = () => {
       if (response.data.user.role === "teacher") {
         navigate("/homeTeacher")
       }
+      if (response.data.user.role === "admin") {
+        navigate("/adminPanel")
+      }
       if (response.data.user.role === "student") {
         navigate("/homeStudent")
       }
@@ -37,7 +40,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center w-full bg-gray-200">
       <div className="bg-white  shadow-md rounded-lg px-8 py-6 max-w-md">
-        <ToastContainer />
+        
         <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-900">
           Welcome Back!
         </h1>

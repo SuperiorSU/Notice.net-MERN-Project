@@ -7,61 +7,51 @@ import { FiSettings } from "react-icons/fi";
 import { PiWrenchLight } from "react-icons/pi";
 import { MdPieChartOutlined } from "react-icons/md";
 import { TbSpeakerphone } from "react-icons/tb";
-
+import { MdDisplaySettings } from "react-icons/md";
 import { Link } from "react-router-dom";
-const Sidebar = () => {
+const TeachsideBar = () => {
   const side = [
     {
       id: "1",
       icon: <BsGraphUpArrow size={20} />,
-      title: "Dashboard",
-      link: "/adminPanel",
+      title: "Template Editor",
+      link: "",
     },
     {
       id: "2",
       icon: <CgNotes size={20} />,
-      title: "Notices",
-      link: "/adminPanel/notices",
+      title: "Past Notices",
+      link: "",
     },
     {
       id: "3",
       icon: <LiaFolderOpenSolid size={20} />,
-      title: "Add Users",
-      link: "/adminPanel/addUsers",
+      title: "Draft",
+      link: "",
     },
+    
     {
-      id: "4",
-      icon: <HiOutlineUser size={20} />,
-      title: "All Users",
-      link: "/adminPanel/allUsers",
+      id: "5",
+      icon: <MdDisplaySettings size={20} />,
+      title: "Records",
+        link: "",
     },
-    {
-      id: "6",
-      icon: <TbSpeakerphone size={20} />,
-      title: "Institution Status",
-       link: "/admin/marketing",
-    },
+    
     {
       id: "7",
       icon: <MdPieChartOutlined size={20} />,
-      title: "Reporting",   
-      link:"/admin/reporting"
+      title: "Notice Analysis",   
+      link:""
     },
     {
       id: "8",
       icon: <FiSettings size={20} />,
       title: "Settings",
-      link: "/admin/settings",
-    },
-    {
-      id: "9",
-      icon: <PiWrenchLight size={20} />,
-      title: "Configuration",
-      link:"/admin/configuration"
-    },
+      link: "",
+    }
   ];
   return (
-    <div className="h-screen shadow-md p-3 bg-white">
+    <div className="h-screen shadow-md p-3 bg-white w-[280px]">
       <div className="">
         {side.map((item) => {
           return (
@@ -83,4 +73,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default TeachsideBar;

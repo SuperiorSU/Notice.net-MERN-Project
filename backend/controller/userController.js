@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.signup = async (req, res) => {
     try {
       // get data
-      const { name, email, password, role,batch } = req.body;
+      const { name, email, password,role,batch } = req.body;
 
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -32,7 +32,7 @@ exports.signup = async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role:"student",
+        role: role?role:"student",
         batch,
       });
   
@@ -110,4 +110,53 @@ exports.login = async (req, res) => {
       })
     }
   };
+
+  // get all students route handler
+  exports.getAllStudents = async (req, res) => {
+    try {
+      let students = await User.find({role:"student"});
+      return res.status(200).json({
+        success:true,
+        students
+      })
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        success:false,
+        message:err.message
+      })
+    }
+  }
+  // get all teachers route handler
+  exports.getAllTeachers = async (req, res) => {
+    try {
+      let teachers = await User.find({role:"teacher"});
+      return res.status(200).json({
+        success:true,
+        teachers
+      })
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        success:false,
+        message:err.message
+      })
+    }
+  }
+// delete user via id route handler
+  exports.deleteUser = async (req, res) => {
+    try {
+      let user = await User.findByIdAndDelete(req.params.id);
+      return res.status(200).json({
+        success:true,
+        user
+      })
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        success:false,
+        message:err.message
+      })
+    }
+  }
 

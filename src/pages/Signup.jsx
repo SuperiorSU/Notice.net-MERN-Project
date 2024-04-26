@@ -10,7 +10,8 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    role: ""
+    batch: "",
+    role:""
 
   });
   const changeHandler = (e) => {
@@ -88,15 +89,15 @@ const Signup = () => {
             </label>
             <select
               onChange={changeHandler}
-              name="role"
-              value={userSign.role}
+              name="batch"
+              value={userSign.batch}
               id="countries_disabled"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option selected>Choose your Batch</option>
               <option value="Super60">Super60</option>
               <option value="The Uniques">The Uniques</option>
-              <option value="academics">The Uniques</option>
+              <option value="academics">Regular Academics</option>
             </select>
           </div>
           <div className="flex items-center justify-between mb-4">
@@ -120,7 +121,8 @@ const Signup = () => {
                 );
                 console.log(res.data);
                 let val = "Account created successfully";
-                await toast.success(`${val}`).then(()=>{navigate("/");});
+                await toast.success(`${val}`)
+                navigate("/")
                 
 
               } catch (error) {
