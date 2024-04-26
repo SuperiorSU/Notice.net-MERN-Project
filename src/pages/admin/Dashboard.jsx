@@ -3,6 +3,8 @@ import { CgNotes } from "react-icons/cg";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { HiOutlineUser } from "react-icons/hi2";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 const Dashboard = () => {
     const [log, setLog] = useState([]);
     const [notice, setNotice] = useState([]);
@@ -33,6 +35,21 @@ const Dashboard = () => {
 
         fetchData();
     }, []);
+    const deleteUser = async (id) => {
+        try {
+            const response = await axios.delete(`http://127.0.0.1:5000/api/v1/deleteUser/${id}`);
+            toast.success('User deleted successfully');
+            const response2 = await axios.get('http://127.0.0.1:5000/api/v1/allStudents');
+            const { data: { students } } = response2;
+            setLog(students);
+            console.log(response);
+            
+        }
+        catch (error) {
+            console.error('Error deleting user:', error);
+            toast.error('Error deleting user');
+        }
+    }
   return (
     <div className='p-5 bg-gray-200'>
         <div className='flex gap-5 '>
@@ -69,10 +86,10 @@ const Dashboard = () => {
                     </div>
                     <div className='flex space-x-4 md:w-[16rem] justify-between'>
                         <div className='flex flex-col space-y-1'>
-                            <span><p className='text-sm text-slate-500'>The Uniques</p></span>
+                            <span><p className='text-sm text-slate-500'>{item.batch}</p></span>
                         </div>
                         <button className='rounded-2xl bg-green-600 px-2 py-1 text-white text-[12px] font-medium h-6'>Edit User</button>
-                        <button className='rounded-2xl bg-red-600 px-2 py-1 text-white text-[12px] font-medium h-6'>Delete</button>
+                        <button className='rounded-2xl bg-red-600 px-2 py-1 text-white text-[12px] font-medium h-6' onClick={()=>deleteUser(item._id)}>Delete</button>
                     </div>
                 </div>
             ))}
@@ -99,7 +116,7 @@ const Dashboard = () => {
                             <span><p className='text-sm text-slate-500'>The Uniques</p></span>
                         </div>
                         <button className='rounded-2xl bg-green-600 px-2 py-1 text-white text-[12px] font-medium h-6'>Edit User</button>
-                        <button className='rounded-2xl bg-red-600 px-2 py-1 text-white text-[12px] font-medium h-6'>Delete</button>
+                        <button className='rounded-2xl bg-red-600 px-2 py-1 text-white text-[12px] font-medium h-6' onClick={()=>deleteUser(item._id)}>Delete</button>
                     </div>
                 </div>
             ))}

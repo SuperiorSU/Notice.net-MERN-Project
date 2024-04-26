@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import bg from "../assets/signup-bg.png";
 const Signup = () => {
   const navigate = useNavigate();
   const [userSign, setUserSign] = useState({
@@ -18,8 +18,8 @@ const Signup = () => {
     setUserSign({ ...userSign, [e.target.name]: e.target.value });
   };
   return (
-    <div className=" flex items-center h-screen justify-center w-full bg-gray-200">
-      <ToastContainer/>
+    <div className=" flex items-center h-screen justify-center w-full bg-gray-200" style={{backgroundImage:`url(${bg})`,backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center'}}>
+     
       <div className="bg-white shadow-md rounded-lg px-8 py-6 w-80">
         <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-900">
           Sign Up

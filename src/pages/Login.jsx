@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import bg from "../assets/bg-login.png";
 import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const navigate = useNavigate();
@@ -38,7 +39,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center w-full bg-gray-200">
+    <div className="min-h-screen flex items-center justify-center w-full bg-gray-200" style={{backgroundImage:`url(${bg})`,backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center'}}>
+
       <div className="bg-white  shadow-md rounded-lg px-8 py-6 max-w-md">
         
         <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-900">
