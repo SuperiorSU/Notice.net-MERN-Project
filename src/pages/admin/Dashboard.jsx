@@ -50,23 +50,69 @@ const Dashboard = () => {
             toast.error('Error deleting user');
         }
     }
-  return (
-    <div className='p-5 bg-gray-200'>
-        <div className='flex gap-5 '>
-            <div className='p-4 rounded-md shadow-sm bg-white'>
-                <h1 className='text-xl font-semibold text-gray-500'>Total Notices</h1>
-                <p className='text-3xl font-bold text-center'>{notice.length} <CgNotes className='inline'/></p>
+    const blockBatch = async (batch) => {
+        try {
+            const response = await axios.put(`http://127.0.0.1:5000/api/v1/blockBatch/${batch}`);
+            toast.success('Batch blocked successfully');
+            const response2 = await axios.get('http://127.0.0.1:5000/api/v1/allStudents');
+            const { data: { students } } = response2;
+            setLog(students);
+            console.log(response);
+        }
+        catch (error) {
+            console.error('Error blocking batch:', error);
+            toast.error('Error blocking batch');
+        }
+    }
+    const countByBatch = (data, batch) => {
+        return data.filter(item => item.batch === batch).length;
+    };
+
+    return (
+        <div className='p-5 bg-gray-200'>
+            <div className='grid grid-cols-3 gap-4 '>
+                {/* Total Notices */}
+                <div className='p-4 rounded-md shadow-sm bg-white flex gap-4'>
+                    <div>
+                        <h1 className='text-[14px] font-semibold text-gray-500'>Total Notices</h1>
+                        <p className='text-6xl font-bold'><CgNotes size={52} className='inline-block pb-2' />{notice.length} </p>
+                    </div>
+                    <div className='border-l-2 ps-4'>
+                        <h1 className='text-[14px] font-semibold pb-1 text-red-500'>Batch Wise Count:</h1>
+                        <p className='text-xs py-[3px]'>Super 60:   {countByBatch(notice, 'Super60')}</p>
+                        <p className='text-xs py-[3px]'>Academics: {countByBatch(notice, 'academics')}</p>
+                        <p className='text-xs py-[3px]'>The Uniques: {countByBatch(notice, 'The Uniques')}</p>
+                    </div>
+                </div>
+
+                {/* Total Students */}
+                <div className='p-4 rounded-md shadow-sm bg-white flex gap-4'>
+                    <div>
+                        <h1 className='text-[14px] font-semibold text-gray-500'>Total Students</h1>
+                        <p className='text-6xl font-bold '><HiOutlineUser size={52} className='inline-block pb-2' />{log.length}</p>
+                    </div>
+                    <div className='border-l-2 ps-4'>
+                        <h1 className='text-[14px] font-semibold pb-1 text-red-500'>Batch Wise Count:</h1>
+                        <p className='text-xs py-[3px]'>Super 60:   {countByBatch(log, 'Super60')}</p>
+                        <p className='text-xs py-[3px]'>Academics: {countByBatch(log, 'academics')}</p>
+                        <p className='text-xs py-[3px]'>The Uniques: {countByBatch(log, 'The Uniques')}</p>
+                    </div>
+                </div>
+
+                {/* Total Teachers */}
+                <div className='p-4 rounded-md shadow-sm bg-white flex gap-4'>
+                    <div>
+                        <h1 className='text-[14px] font-semibold text-gray-500'>Total Teachers</h1>
+                        <p className='text-6xl font-bold'><HiOutlineUser size={52} className='inline-block pb-2' />{teacher.length} </p>
+                    </div>
+                    <div className='border-l-2 ps-4'>
+                        <h1 className='text-[14px] font-semibold pb-1 text-red-500'>Batch Wise Count:</h1>
+                        <p className='text-xs py-[3px]'>Super 60:   {countByBatch(teacher, 'Super60')}</p>
+                        <p className='text-xs py-[3px]'>Academics: {countByBatch(teacher, 'academics')}</p>
+                        <p className='text-xs py-[3px]'>The Uniques: {countByBatch(teacher, "The Uniques")}</p>
+                    </div>
+                </div>
             </div>
-            <div className='p-4 rounded-md shadow-sm bg-white'>
-                <h1 className='text-xl font-semibold text-gray-500'>Total Students</h1>
-                <p className='text-3xl font-bold text-center'>{log.length}<HiOutlineUser className='inline'/></p>
-            </div>
-            <div className='p-4 rounded-md shadow-sm bg-white'>
-                <h1 className='text-xl font-semibold text-gray-500'>Total Teachers</h1>
-                <p className='text-3xl font-bold text-center'>{teacher.length} <HiOutlineUser className='inline'/></p>
-            </div>
-            
-        </div>
         <div className='py-5 bg-white my-4 px-3'>
         <div className='py-4 px-4 bg-white'>
                 <h1 className='text-2xl font-semibold text-gray-900'> All Students</h1>

@@ -160,3 +160,20 @@ exports.login = async (req, res) => {
     }
   }
 
+// block the student registatration from a selected batch type route handler
+  exports.blockBatch = async (req, res) => {
+    try {
+      let batch = req.params.batch;
+      let students = await User.updateMany({batch:batch},{isBlocked:true});
+      return res.status(200).json({
+        success:true,
+        students
+      })
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        success:false,
+        message:err.message
+      })
+    }
+  }

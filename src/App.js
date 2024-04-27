@@ -18,6 +18,7 @@ import Dashboard from './pages/admin/Dashboard';
 import Notices from './pages/admin/Notices';
 import AllUsers from './pages/admin/AllUsers';
 import AddUser from './pages/admin/AddUser';
+import StudentHome from './pages/StudentHome';
 
 
 function App() {
@@ -134,7 +135,7 @@ function App() {
         children: [
           {
             path:'/homeStudent',
-            element:<div className='text-2xl text-center font-mdeium'>Home</div>
+            element:<StudentHome/>
           },
           {
             path:'/homeStudent/profile',
